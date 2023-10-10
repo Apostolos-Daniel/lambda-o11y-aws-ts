@@ -53,4 +53,9 @@ cdk init app --language typescript
 Invoke the lamba function locally by running the following command:
 
 
+## Deploying from GitHub Actions
+
+
+https://blog.simonireilly.com/posts/secure-aws-cdk-deploys-with-github-actions
+
 

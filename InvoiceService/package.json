@@ -6,11 +6,13 @@
   },
   "scripts": {
     "build": "tsc",
-    "watch": "tsc -w",
+    "build:watch": "tsc -w",
     "test": "jest",
+    "test:watch": "jest --watch",
     "cdk": "cdk"
   },
   "devDependencies": {
+    "@types/aws-lambda": "^8.10.124",
     "@types/jest": "^29.5.4",
     "@types/node": "20.5.9",
     "aws-cdk": "^2.100.0",
@@ -21,6 +23,7 @@
   },
   "dependencies": {
     "aws-cdk-lib": "^2.100.0",
+    "aws-lambda": "^1.0.7",
     "constructs": "^10.0.0",
     "source-map-support": "^0.5.21"
   }
