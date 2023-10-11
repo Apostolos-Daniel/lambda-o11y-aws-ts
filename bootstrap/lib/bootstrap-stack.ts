@@ -25,8 +25,11 @@ export class BootstrapStack extends cdk.Stack {
      * deployment roles.
      */
     const GitHubPrincipal = new OpenIdConnectPrincipal(provider).withConditions({
+      StringEquals: {
+        "token.actions.githubusercontent.com:aud": "sts.amazonaws.com"
+      },
       StringLike: {
-        "token.actions.githubusercontent.com:sub": `repo:${githubOrganisation}/${repoName}`,
+        "token.actions.githubusercontent.com:sub": `repo:${githubOrganisation}/${repoName}/*`,
       },
     });
 
