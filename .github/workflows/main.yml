@@ -39,3 +39,5 @@ jobs:
 
       - name: Deploy
         run: npx cdk deploy --require-approval never
+        env:
+          DD_API_KEY: ${{ secrets.DD_API_KEY}}

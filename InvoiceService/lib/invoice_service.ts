@@ -3,6 +3,9 @@ import * as apigateway from "aws-cdk-lib/aws-apigateway";
 import * as lambda from "aws-cdk-lib/aws-lambda";
 import * as s3 from "aws-cdk-lib/aws-s3";
 
+// For AWS CDK v2
+import { Datadog } from "datadog-cdk-constructs-v2";
+
 export class InvoiceService extends Construct {
   constructor(scope: Construct, id: string) {
     super(scope, id);
@@ -37,5 +40,16 @@ export class InvoiceService extends Construct {
     Invoice.addMethod("POST", InvoiceIntegration); // POST /{id}
     Invoice.addMethod("GET", InvoiceIntegration); // GET /{id}
     Invoice.addMethod("DELETE", InvoiceIntegration); // DELETE /{id}
+
+    const datadog = new Datadog(this, "Datadog", {
+      nodeLayerVersion: 98,
+      extensionLayerVersion: 49,
+      site: "datadoghq.eu",
+      env: "sandbox",
+      service: "invoice-service",
+      version: "version-todo",
+      apiKey: process.env.DD_API_KEY,
+  });
+    datadog.addLambdaFunctions([handler])
   }
 }

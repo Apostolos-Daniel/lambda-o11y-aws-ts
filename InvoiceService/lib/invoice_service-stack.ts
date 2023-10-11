@@ -3,6 +3,9 @@ import { Construct } from "constructs";
 // import * as sqs from 'aws-cdk-lib/aws-sqs';
 import * as Invoice_service from "../lib/invoice_service";
 
+// For AWS CDK v2
+import { Datadog } from "datadog-cdk-constructs-v2";
+
 export class InvoiceServiceStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);

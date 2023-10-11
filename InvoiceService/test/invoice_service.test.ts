@@ -25,7 +25,7 @@ test("GetInvoice Function created with environment set", () => {
   const template = Template.fromStack(stack);
 
   template.hasResourceProperties("AWS::Lambda::Function", {
-    Handler: "main.handler",
+    Handler: '/opt/nodejs/node_modules/datadog-lambda-js/handler.handler'// this is because Datadog wwraps the original handler
   });
 });
 
@@ -99,4 +99,59 @@ test("GetInvoice function is attached to API Gateway", () => {
       Match.stringLikeRegexp("InvoicesInvoicesapi.*"),
     ]),
   });
+});
+
+
+describe('DataDog CDK Integration', () => {
+
+  test('Alls function have DataDog env vars configured correctly', () => {
+    // THEN
+    const template = Template.fromStack(stack);
+
+    template.allResourcesProperties('AWS::Lambda::Function', {
+      Environment: Match.objectLike({
+        Variables: Match.objectLike({
+          DD_LAMBDA_HANDLER: "main.handler",
+          DD_TRACE_ENABLED: "true",
+          DD_SERVERLESS_APPSEC_ENABLED: "false",
+          DD_MERGE_XRAY_TRACES: "false",
+          DD_LOGS_INJECTION: "false",
+          DD_SERVERLESS_LOGS_ENABLED: "true",
+          DD_CAPTURE_LAMBDA_PAYLOAD: "false",
+          DD_ENV: "sandbox",
+          DD_SERVICE: "invoice-service",
+          DD_VERSION: "version-todo",
+          DD_FLUSH_TO_LOG: "false",
+          DD_SITE: "datadoghq.eu",
+          DD_API_KEY: "6065f58553baf229caae338401cf6388",
+          DD_TAGS: "git.commit.sha:ff62919dac78b6253e3be38fd14790ce136238f7,git.repository_url:github.com/Apostolos-Daniel/lambda-o11y-aws-ts.git"
+         
+        })
+      })
+    });
+  });
+
+  test('All functions are decorated with the DataDog lambda integration', () => {
+    // THEN
+    const template = Template.fromStack(stack);
+
+    template.allResourcesProperties('AWS::Lambda::Function', {
+      Layers:
+        Match.arrayWith([
+          Match.objectLike({
+            "Fn::Join": Match.arrayWith([
+              "",
+              Match.arrayWith(
+                [
+                  "arn:aws:lambda:",
+                  { "Ref": "AWS::Region" },
+                  ":464622532012:layer:Datadog-Extension:49"
+                ]
+              )
+            ])
+          })
+        ])
+    })
+  });
+
 });
