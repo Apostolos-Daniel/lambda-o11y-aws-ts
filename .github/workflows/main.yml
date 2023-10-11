@@ -20,7 +20,7 @@ jobs:
       #     pip3 install awscli --upgrade --user
       
       - name: Assume role using OIDC
-        uses: aws-actions/configure-aws-credentials@master
+        uses: aws-actions/configure-aws-credentials@v3
         with:
           role-to-assume: arn:aws:iam::643476110649:role/github-ci-role
           aws-region: eu-west-1
