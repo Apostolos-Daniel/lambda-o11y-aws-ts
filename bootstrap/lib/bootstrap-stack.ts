@@ -17,7 +17,7 @@ export class BootstrapStack extends cdk.Stack {
       clientIds: ["sts.amazonaws.com"],
     });
 
-    const githubOrganisation = "apostolos-daniel";
+    const githubOrganisation = "Apostolos-Daniel";
     // Change this to the repo you want to push code from
     const repoName = "lambda-o11y-aws-ts";
     /**
@@ -26,7 +26,7 @@ export class BootstrapStack extends cdk.Stack {
      */
     const GitHubPrincipal = new OpenIdConnectPrincipal(provider).withConditions({
       StringLike: {
-        "token.actions.githubusercontent.com:sub": `repo:${githubOrganisation}/${repoName}:*`,
+        "token.actions.githubusercontent.com:sub": `repo:${githubOrganisation}/${repoName}`,
       },
     });
 
@@ -49,7 +49,7 @@ export class BootstrapStack extends cdk.Stack {
           statements: [
             new PolicyStatement({
               effect: Effect.ALLOW,
-              actions: ["sts:AssumeRole"],
+              actions: ["sts:AssumeRoleWithWebIdentity"],
               resources: [`arn:aws:iam::${this.account}:role/cdk-*`],
             }),
           ],
