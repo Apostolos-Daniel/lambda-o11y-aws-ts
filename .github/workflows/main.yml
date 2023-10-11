@@ -14,15 +14,13 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: ./InvoiceService
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
-      # - name: Install AWS CLI
-      #   run: |
-      #     sudo apt-get update
-      #     sudo apt-get install -y python3-pip
-      #     pip3 install awscli --upgrade --user
       
       - name: Assume role using OIDC
         uses: aws-actions/configure-aws-credentials@v3
@@ -30,18 +28,7 @@ jobs:
           role-to-assume: arn:aws:iam::643476110649:role/github-ci-role
           aws-region: eu-west-1
 
-      # - name: Configure AWS credentials
-      #   env:
-      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      #     AWS_DEFAULT_REGION: eu-west-1
-      #   run: |
-      #     aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
-      #     aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
-      #     aws configure set default.region $AWS_DEFAULT_REGION
-
       - name: Install dependencies
-        working-directory: ./InvoiceService
         run: npm install
 
       - name: Build
