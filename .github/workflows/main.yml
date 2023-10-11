@@ -41,6 +41,7 @@ jobs:
       #     aws configure set default.region $AWS_DEFAULT_REGION
 
       - name: Install dependencies
+        working-directory: ./InvoiceService
         run: npm install
 
       - name: Build
