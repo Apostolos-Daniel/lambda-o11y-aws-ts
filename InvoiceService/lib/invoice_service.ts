@@ -15,19 +15,19 @@ export class InvoiceService extends Construct {
       code: lambda.Code.fromAsset("handlers/get-invoice"),
       handler: "main.handler",
       environment: {
-        BUCKET: bucket.bucketName
-      }
+        BUCKET: bucket.bucketName,
+      },
     });
 
     bucket.grantReadWrite(handler);
 
     const api = new apigateway.RestApi(this, "Invoices-api", {
       restApiName: "Invoice Service",
-      description: "This service serves Invoices."
+      description: "This service serves Invoices.",
     });
 
     const getInvoicesIntegration = new apigateway.LambdaIntegration(handler, {
-      requestTemplates: { "application/json": '{ "statusCode": "200" }' }
+      requestTemplates: { "application/json": '{ "statusCode": "200" }' },
     });
 
     api.root.addMethod("GET", getInvoicesIntegration); // GET /
@@ -35,8 +35,8 @@ export class InvoiceService extends Construct {
 
     const InvoiceIntegration = new apigateway.LambdaIntegration(handler);
 
-    Invoice.addMethod("POST", InvoiceIntegration);   // POST /{id}
-    Invoice.addMethod("GET", InvoiceIntegration);    // GET /{id}
+    Invoice.addMethod("POST", InvoiceIntegration); // POST /{id}
+    Invoice.addMethod("GET", InvoiceIntegration); // GET /{id}
     Invoice.addMethod("DELETE", InvoiceIntegration); // DELETE /{id}
   }
 }

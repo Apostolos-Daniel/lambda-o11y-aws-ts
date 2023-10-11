@@ -1,17 +1,14 @@
-import {  Handler } from 'aws-lambda';
+import { Handler } from "aws-lambda";
 
-export const handler: Handler = async (
-    event,
-    context
-  ) => {
-    console.log('EVENT: \n', JSON.stringify(event, null, 2));
-  
-    const response = {
-      statusCode: 200,
-      body: JSON.stringify({
-        "Hello": `Invoice 💸`
-      })
-    };
-  
-    return response;
+export const handler: Handler = async (event, context) => {
+  console.log("EVENT: \n", JSON.stringify(event, null, 2));
+
+  const response = {
+    statusCode: 200,
+    body: JSON.stringify({
+      Hello: `Invoice 💸`,
+    }),
   };
+
+  return response;
+};

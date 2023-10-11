@@ -11,8 +11,7 @@
     "test:watch": "jest --watch",
     "cdk": "cdk",
     "lint": "eslint '**/*.ts' --fix",
-    "prettier": "prettier --write '**/*.ts'",
-    "prepare": "cd .. && husky install front/.husky"
+    "prettier": "prettier --write '**/*.ts'"
   },
   "lint-staged": {
     "**/*.ts": [
