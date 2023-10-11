@@ -57,5 +57,5 @@ Invoke the lamba function locally by running the following command:
 
 
 https://blog.simonireilly.com/posts/secure-aws-cdk-deploys-with-github-actions
-
+https://github.com/aws-actions/configure-aws-credentials#OIDC
 

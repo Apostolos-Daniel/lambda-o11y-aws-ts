@@ -60,15 +60,15 @@ export class BootstrapStack extends cdk.Stack {
       },
     });
 
-        // Define the policy statement
-        const ssmPolicyStatement = new PolicyStatement({
-          effect: Effect.ALLOW,
-          actions: ['ssm:GetParameter'],
-          resources: ['arn:aws:ssm:eu-west-1:643476110649:parameter/cdk-bootstrap/hnb659fds/version'],
-        });
-    
-        // Attach the policy statement to the role
-        githubActionsRole.addToPolicy(ssmPolicyStatement);
+    // Define the policy statement
+    const ssmPolicyStatement = new PolicyStatement({
+      effect: Effect.ALLOW,
+      actions: ['ssm:GetParameter'],
+      resources: ['arn:aws:ssm:eu-west-1:643476110649:parameter/cdk-bootstrap/hnb659fds/version'],
+    });
+
+    // Attach the policy statement to the role
+    githubActionsRole.addToPolicy(ssmPolicyStatement);
 
   }
 }
