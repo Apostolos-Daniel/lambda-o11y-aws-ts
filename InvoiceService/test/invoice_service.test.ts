@@ -104,7 +104,7 @@ test("GetInvoice function is attached to API Gateway", () => {
 
 describe('DataDog CDK Integration', () => {
 
-  test('Alls function have DataDog env vars configured correctly', () => {
+  test('All functions have DataDog env vars configured correctly', () => {
     // THEN
     const template = Template.fromStack(stack);
 
@@ -123,9 +123,7 @@ describe('DataDog CDK Integration', () => {
           DD_VERSION: "version-todo",
           DD_FLUSH_TO_LOG: "false",
           DD_SITE: "datadoghq.eu",
-          DD_API_KEY: "6065f58553baf229caae338401cf6388",
           DD_TAGS: "git.commit.sha:ff62919dac78b6253e3be38fd14790ce136238f7,git.repository_url:github.com/Apostolos-Daniel/lambda-o11y-aws-ts.git"
-         
         })
       })
     });
