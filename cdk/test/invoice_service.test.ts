@@ -1,6 +1,6 @@
 import * as cdk from "aws-cdk-lib";
 import { Match, Template } from "aws-cdk-lib/assertions";
-import * as CdkApp from "../lib/invoice_service-stack";
+import * as CdkApp from "../../cdk/invoice_service-stack";
 
 // https://docs.aws.amazon.com/cdk/v2/guide/testing.html
 
@@ -68,7 +68,7 @@ test("GetInvoice Function has Read/Write permissions to the bucket", () => {
   template.hasResourceProperties("AWS::Lambda::Function", {
     Role: Match.objectLike({
       "Fn::GetAtt": Match.arrayWith([
-        Match.stringLikeRegexp("InvoicesInvoiceHandlerServiceRole.*"),
+        Match.stringLikeRegexp("InvoiceHandlerServiceRole.*"),
         "Arn",
       ]),
     }),
@@ -92,11 +92,11 @@ test("GetInvoice function is attached to API Gateway", () => {
     Properties: Match.objectLike({
       Description: "This service serves Invoices.",
       RestApiId: Match.objectLike({
-        Ref: Match.stringLikeRegexp("InvoicesInvoicesapi.*"),
+        Ref: Match.stringLikeRegexp("Invoicesapi.*"),
       }),
     }),
     DependsOn: Match.arrayWith([
-      Match.stringLikeRegexp("InvoicesInvoicesapi.*"),
+      Match.stringLikeRegexp("Invoicesapi.*"),
     ]),
   });
 });

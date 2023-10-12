@@ -1,20 +1,19 @@
+import * as cdk from "aws-cdk-lib";
 import { Construct } from "constructs";
 import * as apigateway from "aws-cdk-lib/aws-apigateway";
 import * as lambda from "aws-cdk-lib/aws-lambda";
 import * as s3 from "aws-cdk-lib/aws-s3";
-
 // For AWS CDK v2
 import { Datadog } from "datadog-cdk-constructs-v2";
 
-export class InvoiceService extends Construct {
-  constructor(scope: Construct, id: string) {
-    super(scope, id);
-
+export class InvoiceServiceStack extends cdk.Stack {
+  constructor(scope: Construct, id: string, props?: cdk.StackProps) {
+    super(scope, id, props);
     const bucket = new s3.Bucket(this, "InvoiceStore");
 
     const handler = new lambda.Function(this, "InvoiceHandler", {
       runtime: lambda.Runtime.NODEJS_18_X,
-      code: lambda.Code.fromAsset("handlers/get-invoice"),
+      code: lambda.Code.fromAsset("./src/handlers/get-invoice"),
       handler: "main.handler",
       environment: {
         BUCKET: bucket.bucketName,
@@ -49,7 +48,7 @@ export class InvoiceService extends Construct {
       env: "sandbox",
       service: "invoice-service",
       version: "version-todo",
-  });
+    });
     datadog.addLambdaFunctions([handler])
   }
 }

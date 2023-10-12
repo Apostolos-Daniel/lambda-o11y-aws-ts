@@ -1,4 +1,4 @@
-import { handler } from "./main";
+import { handler } from "../../handlers/get-invoice/main";
 import { Context } from "aws-lambda";
 
 describe("get-invoice handler", () => {

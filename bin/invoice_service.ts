@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import "source-map-support/register";
 import * as cdk from "aws-cdk-lib";
-import { InvoiceServiceStack } from "../lib/invoice_service-stack";
+import { InvoiceServiceStack } from "../cdk/invoice_service-stack";
 
 const app = new cdk.App();
 new InvoiceServiceStack(app, "InvoiceServiceStack", {
