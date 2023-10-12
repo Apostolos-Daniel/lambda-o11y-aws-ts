@@ -5,6 +5,7 @@ import * as lambda from "aws-cdk-lib/aws-lambda";
 import * as s3 from "aws-cdk-lib/aws-s3";
 // For AWS CDK v2
 import { Datadog } from "datadog-cdk-constructs-v2";
+require('dotenv').config()
 
 export class InvoiceServiceStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {

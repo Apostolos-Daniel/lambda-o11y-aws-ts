@@ -14,10 +14,6 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: ./InvoiceService
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -36,6 +32,8 @@ jobs:
 
       - name: Test
         run: npm run test
+        env:
+          DD_API_KEY: ${{ secrets.DD_API_KEY}}
 
       - name: Deploy
         run: npx cdk deploy --require-approval never
