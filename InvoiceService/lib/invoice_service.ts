@@ -45,10 +45,10 @@ export class InvoiceService extends Construct {
       nodeLayerVersion: 98,
       extensionLayerVersion: 49,
       site: "datadoghq.eu",
+      apiKey: process.env.DD_API_KEY,
       env: "sandbox",
       service: "invoice-service",
       version: "version-todo",
-      apiKey: process.env.DD_API_KEY,
   });
     datadog.addLambdaFunctions([handler])
   }
