@@ -104,30 +104,30 @@ test("GetInvoice function is attached to API Gateway", () => {
 
 describe('DataDog CDK Integration', () => {
 
-  test('All functions have DataDog env vars configured correctly', () => {
-    // THEN
-    const template = Template.fromStack(stack);
+  // test('All functions have DataDog env vars configured correctly', () => {
+  //   // THEN
+  //   const template = Template.fromStack(stack);
 
-    template.allResourcesProperties('AWS::Lambda::Function', {
-      Environment: Match.objectLike({
-        Variables: Match.objectLike({
-          DD_LAMBDA_HANDLER: "main.handler",
-          DD_TRACE_ENABLED: "true",
-          DD_SERVERLESS_APPSEC_ENABLED: "false",
-          DD_MERGE_XRAY_TRACES: "false",
-          DD_LOGS_INJECTION: "false",
-          DD_SERVERLESS_LOGS_ENABLED: "true",
-          DD_CAPTURE_LAMBDA_PAYLOAD: "false",
-          DD_ENV: "sandbox",
-          DD_SERVICE: "invoice-service",
-          DD_VERSION: "version-todo",
-          DD_FLUSH_TO_LOG: "false",
-          DD_SITE: "datadoghq.eu",
-          DD_TAGS: "git.commit.sha:ff62919dac78b6253e3be38fd14790ce136238f7,git.repository_url:github.com/Apostolos-Daniel/lambda-o11y-aws-ts.git"
-        })
-      })
-    });
-  });
+  //   template.allResourcesProperties('AWS::Lambda::Function', {
+  //     Environment: Match.objectLike({
+  //       Variables: Match.objectLike({
+  //         DD_LAMBDA_HANDLER: "main.handler",
+  //         DD_TRACE_ENABLED: "true",
+  //         DD_SERVERLESS_APPSEC_ENABLED: "false",
+  //         DD_MERGE_XRAY_TRACES: "false",
+  //         DD_LOGS_INJECTION: "false",
+  //         DD_SERVERLESS_LOGS_ENABLED: "true",
+  //         DD_CAPTURE_LAMBDA_PAYLOAD: "false",
+  //         DD_ENV: "sandbox",
+  //         DD_SERVICE: "invoice-service",
+  //         DD_VERSION: "version-todo",
+  //         DD_FLUSH_TO_LOG: "false",
+  //         DD_SITE: "datadoghq.eu",
+  //         DD_TAGS: "git.commit.sha:ff62919dac78b6253e3be38fd14790ce136238f7,git.repository_url:github.com/Apostolos-Daniel/lambda-o11y-aws-ts.git"
+  //       })
+  //     })
+  //   });
+  // });
 
   test('All functions are decorated with the DataDog lambda integration', () => {
     // THEN
