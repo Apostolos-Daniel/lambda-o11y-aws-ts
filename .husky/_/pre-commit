@@ -1,5 +1,5 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-npm run tsc:verify
+echo "Testing pre-commit hook" && npm run tsc:verify
 npx lint-staged
