@@ -47,6 +47,7 @@ export class InvoiceServiceStack extends cdk.Stack {
       site: "datadoghq.eu",
       apiKey: process.env.DD_API_KEY,
       env: "sandbox",
+      captureLambdaPayload: true,
       service: "invoice-service",
       version: "version-todo",
     });
