@@ -3,3 +3,5 @@
 
 echo "Testing pre-commit hook" && npm run tsc:verify
 npx lint-staged
+
+# test
