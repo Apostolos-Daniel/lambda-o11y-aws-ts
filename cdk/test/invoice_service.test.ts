@@ -114,7 +114,7 @@ describe('DataDog CDK Integration', () => {
           DD_LAMBDA_HANDLER: "main.handler",
           DD_TRACE_ENABLED: "true",
           DD_SERVERLESS_LOGS_ENABLED: "true",
-          DD_CAPTURE_LAMBDA_PAYLOAD: "false",
+          DD_CAPTURE_LAMBDA_PAYLOAD: "true",
           DD_ENV: "sandbox",
           DD_SERVICE: "invoice-service",
           DD_VERSION: "version-todo",
