@@ -19,9 +19,9 @@ The `cdk.json` file tells the CDK Toolkit how to execute your app.
 
 To support local development this project uses [git hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks) to provide automation during the local development lifecycle. Git hooks are managed using [Husky](https://typicode.github.io/husky/#/) and configuration is stored in `.husky/`
 
-```
+```bash
 npm i -D husky lint-staged
- npx mrm lint-staged
+npx mrm lint-staged
 ```
 
 https://typicode.github.io/husky/
