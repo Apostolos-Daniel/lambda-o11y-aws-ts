@@ -6,12 +6,12 @@ The `cdk.json` file tells the CDK Toolkit how to execute your app.
 
 ## Useful commands
 
-* `npm run build`   compile typescript to js
-* `npm run watch`   watch for changes and compile
-* `npm run test`    perform the jest unit tests
-* `cdk deploy`      deploy this stack to your default AWS account/region
-* `cdk diff`        compare deployed stack with current state
-* `cdk synth`       emits the synthesized CloudFormation template
+- `npm run build` compile typescript to js
+- `npm run watch` watch for changes and compile
+- `npm run test` perform the jest unit tests
+- `cdk deploy` deploy this stack to your default AWS account/region
+- `cdk diff` compare deployed stack with current state
+- `cdk synth` emits the synthesized CloudFormation template
 
 ## Local Development 👩‍💻
 
@@ -19,7 +19,15 @@ The `cdk.json` file tells the CDK Toolkit how to execute your app.
 
 To support local development this project uses [git hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks) to provide automation during the local development lifecycle. Git hooks are managed using [Husky](https://typicode.github.io/husky/#/) and configuration is stored in `.husky/`
 
+```
+npm i -D husky lint-staged
+ npx mrm lint-staged
+```
+
 https://typicode.github.io/husky/
+
+If you have any issues, have a read on this:
+https://stackoverflow.com/questions/50048717/lint-staged-not-running-on-precommit
 
 The following hooks are in place:
 
